@@ -278,6 +278,13 @@ function drawTable() {
     const table = createTable();
 
     main.append(table[0]);
+    console.log(`table[2]`);
+    console.log(`table[2]`);
+    console.log(`table[2]`);
+    console.log(`table[2]`);
+    console.log(`table[2]`);
+    console.log(`table[2]`);
+    console.log(table[2]);
 
     return table;
 }

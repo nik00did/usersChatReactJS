@@ -106,7 +106,5 @@ function SendToServer() {
 
     };
 
-
-
 };
 

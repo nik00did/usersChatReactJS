@@ -6,14 +6,41 @@ function Controller() {
     const view = new View();
     const sendData = new SendToServer();
     const model = new Model();
-    // model._usersRegistrate.addUser(new User('Nikita', 'email@gmail.com', '123', 'online'));
-    // model._usersRegistrate.addUser(new User('Stas', 'email1@gmail.com', '124', 'online'));
     const validator = new Validator(model._usersRegistrate);
     let style = null;
     let table = [];
     let requireVecMsg = true;
     let myName;
     let myEmail;
+
+
+    const ws = new WebSocket(`ws://localhost:5000`);
+
+    ws.onmessage = function (event) {
+        console.log('Получили');
+        console.log(event.data);
+        console.log(JSON.parse(event.data));
+        pushToModel([JSON.parse(event.data)]);
+        createMsg([JSON.parse(event.data)]);
+        // appendMsg(JSON.parse(event.data), view.chatBoard);
+    };
+
+    ws.onopen = function () {
+        console.log('Connection complite');
+    };
+
+    ws.onclose = function (event) {
+        if (event.wasClean) {
+            console.log('соединение закрыто чисто')
+        } else {
+            console.log('Обрыв соединения');
+        }
+    };
+
+    ws.onerror = function (error) {
+        console.log(`Error = ` + error.message);
+    };
+
 
 
     this.init = () => {
@@ -185,6 +212,7 @@ function Controller() {
                 const dataVec = JSON.parse(vec);
                 console.log(dataVec);
                 pushToModel(dataVec);
+                createMsg(dataVec);
                 console.log(`END for`);
             } else {
                 alert("Не пришло Них....");
@@ -209,10 +237,19 @@ function Controller() {
             console.log('ВОТ ЧТО КЛАДЕТСЯ В БАЗУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУ');
             console.log('ВОТ ЧТО КЛАДЕТСЯ В БАЗУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУ');
             console.log(model.chatMsg.getChat());
-            let msg = createMessage(dataVec[i]._owner, dataVec[i]._text, dataVec[i]._date);
+            //let msg = createMessage(dataVec[i]._owner, dataVec[i]._text, dataVec[i]._date);
+            //appendMsg(dataVec[i], view.chatBoard);
+        }
+
+    };
+
+    const createMsg = function (dataVec) {
+        for (let i = 0; i < dataVec.length; i++) {
             appendMsg(dataVec[i], view.chatBoard);
         }
-    };
+    }
+
+
 
     const clickUsers = () => {
         view.page = 2;
@@ -235,16 +272,18 @@ function Controller() {
             const rezObj = JSON.parse(rez);
             console.log(`rezObj`);
             console.log(rezObj);
-            pushToModel(rezObj);
             console.log("ВОТ ЧТО МНЕ НАДО ВЫВЕСТИ НА МОЙ УСТАЛЫЙ ЭКРАН");
+            ws.send(JSON.stringify({_owner: myName, _text: text, _date: new Date()}));
+
         });
 
     };
 
-    const fillTable = () => {
+    const fillTable = function() {
         const tbody = document.getElementById('tbody');
         let tr;
-
+        console.log(`tbody`);
+        console.log(tbody);
         console.log(model.getUsersRegistrate());
         for (let i = 0; i < model._usersRegistrate.getUsers().length; i++) {
             tr = createRow('global__table_row', i + 1, model.getUsersRegistrate()[i].getUser()._name, model.getUsersRegistrate()[i].getUser()._email);

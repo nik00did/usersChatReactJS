@@ -6,7 +6,10 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mongoose": "^5.7.1"
+    "express-ws": "^4.0.0",
+    "mongoose": "^5.7.1",
+    "socket.io": "^2.2.0",
+    "ws": "^7.1.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,5 +17,13 @@
     "start": "node Server/server.js"
   },
   "author": "stas",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nik00did/usersChatReactJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nik00did/usersChatReactJS/issues"
+  },
+  "homepage": "https://github.com/nik00did/usersChatReactJS#readme"
 }
