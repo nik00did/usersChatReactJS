@@ -1,0 +1,100 @@
+@import '../../matrix/matrix.less';
+
+.platform {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.platform__header {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.platform__header-title {
+  width: 30%;
+  min-width: 200px;
+  border: 1px solid #fff;
+}
+
+.platform__main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.platform__main_controller {
+  width: 30%;
+  min-width: 200px;
+  height: 100%;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chat {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.window {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat__controller {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+}
+
+.container {
+  width: 100%;
+}
+
+.container_flex-right {
+  align-items: flex-end;
+}
+
+.message {
+  width: 30%;
+  max-width: 300px;
+  min-width: 100px;
+  min-height: 50px;
+  height: 10%;
+  padding: 5px;
+  overflow-x: hidden;
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+.message__owner {
+  position: relative;
+  margin-left: 0;
+  margin-top: 0;
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.message__content {
+  position: relative;
+  vertical-align: center;
+  font-size: 20px;
+}
+
+.message__date {
+  position: relative;
+  margin-right: 0;
+  margin-bottom: 0;
+  font-size: 15px;
+}

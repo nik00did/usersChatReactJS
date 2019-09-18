@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Platform from '../platform/Platform.jsx';
+import './style.less';
 
 export default class Login extends Component {
     state = {
+        isPlatformPage: false,
         activeState: 'signIn',
     };
 
@@ -9,22 +12,24 @@ export default class Login extends Component {
     sighUpRef = React.createRef();
 
     componentDidUpdate() {
-        const { activeState } = this.state;
+        const { activeState, isPlatformPage } = this.state;
 
-        if (this.sighInRef.current && activeState === 'signIn') {
-            this.sighInRef.current.classList.add('active');
-        } else {
-            this.sighInRef.current.classList.remove('active');
-        }
+        if (!isPlatformPage) {
+            if (this.sighInRef.current && activeState === 'signIn') {
+                this.sighInRef.current.classList.add('active');
+            } else {
+                this.sighInRef.current.classList.remove('active');
+            }
 
-        if (this.sighUpRef.current && activeState === 'signUp') {
-            this.sighUpRef.current.classList.add('active');
-        } else {
-            this.sighUpRef.current.classList.remove('active');
+            if (this.sighUpRef.current && activeState === 'signUp') {
+                this.sighUpRef.current.classList.add('active');
+            } else {
+                this.sighUpRef.current.classList.remove('active');
+            }
         }
     }
 
-    getBody = () => {
+    getLogInBody = () => {
         const { activeState } = this.state;
 
         switch (activeState) {
@@ -44,15 +49,33 @@ export default class Login extends Component {
         }));
     };
 
+    handleSubmit = isPlatformPage => {
+        this.setState(state => ({
+            ...state,
+            isPlatformPage,
+        }));
+    };
+
+    getPlatformPage = () => {
+        return (
+            <Platform/>
+        );
+    };
+
     getSignUpPage = () => {
         return (
-            <div> SIGN UP </div>
+            <div>
+                SIGN UP
+                <div>
+                    Hello!
+                </div>
+            </div>
         );
     };
 
     getSignInPage = () => {
         return (
-           <>
+           <div>
                <div className='wrapper-form__fields-container fields-container'>
                    <div className='fields-container__field field'>
                        <span className='field__span'>Email</span>
@@ -64,29 +87,37 @@ export default class Login extends Component {
                    </div>
                </div>
                <div className='wrapper-form__submit-container submit-container'>
-                   <button className='submit-container__button'> Submit </button>
+                   <button
+                       onClick={ () => this.handleSubmit(!this.state.isPlatformPage) }
+                       className='button'>
+                       Submit
+                   </button>
                </div>
-           </>
+           </div>
         );
     };
 
-    render() {
+    getLogInPage = () => {
         return (
             <div className='wrapper__wrapper-form wrapper-form'>
                 <div className='wrapper-form__buttons-container buttons-container'>
                     <button ref = {this.sighInRef}
                             onClick = {() => this.handleSignButton('signIn')}
-                            className='buttons-container__button active'>
+                            className='button active'>
                         Sign In
                     </button>
                     <button ref = {this.sighUpRef}
                             onClick = {() => this.handleSignButton('signUp')}
-                            className='buttons-container__button'>
+                            className='button'>
                         Sign Up
                     </button>
                 </div>
-                { this.getBody() }
+                { this.getLogInBody() }
             </div>
         );
+    };
+
+    render() {
+        return this.state.isPlatformPage ? this.getPlatformPage() : this.getLogInPage();
     }
 }
