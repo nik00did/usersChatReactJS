@@ -8,9 +8,9 @@ export default class Chat extends Component {
             <div className='chat'>
                 <Window/>
                 <div className='chat__controller'>
-                    <input type='text' placeholder='Write here ...'/>
-                    <div>Emoji</div>
-                    <button className='button'>Send</button>
+                    <input className='chat__controller_input' type='text' placeholder='Write here ...'/>
+                    <button className='button chat__controller_emoji'>(*_*)</button>
+                    <button className='button chat__controller_button'>Send</button>
                 </div>
             </div>
         );
