@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Platform from '../platform/Platform.jsx';
+import './style.less';
 
 export default class Login extends Component {
     state = {
+        isPlatformPage: false,
         activeState: 'signIn',
     };
 
@@ -9,22 +12,24 @@ export default class Login extends Component {
     sighUpRef = React.createRef();
 
     componentDidUpdate() {
-        const { activeState } = this.state;
+        const { activeState, isPlatformPage } = this.state;
 
-        if (this.sighInRef.current && activeState === 'signIn') {
-            this.sighInRef.current.classList.add('active');
-        } else {
-            this.sighInRef.current.classList.remove('active');
-        }
+        if (!isPlatformPage) {
+            if (this.sighInRef.current && activeState === 'signIn') {
+                this.sighInRef.current.classList.add('active');
+            } else {
+                this.sighInRef.current.classList.remove('active');
+            }
 
-        if (this.sighUpRef.current && activeState === 'signUp') {
-            this.sighUpRef.current.classList.add('active');
-        } else {
-            this.sighUpRef.current.classList.remove('active');
+            if (this.sighUpRef.current && activeState === 'signUp') {
+                this.sighUpRef.current.classList.add('active');
+            } else {
+                this.sighUpRef.current.classList.remove('active');
+            }
         }
     }
 
-    getBody = () => {
+    getLogInBody = () => {
         const { activeState } = this.state;
 
         switch (activeState) {
@@ -44,49 +49,96 @@ export default class Login extends Component {
         }));
     };
 
+    handleSubmit = isPlatformPage => {
+        this.setState(state => ({
+            ...state,
+            isPlatformPage,
+        }));
+    };
+
+    getPlatformPage = () => {
+        return (
+            <Platform/>
+        );
+    };
+
     getSignUpPage = () => {
         return (
-            <div> SIGN UP </div>
+            <div className='logIn-page__field'>
+                <div className='logIn-page__input-data'>
+                    <div className='logIn-page__input-data_data'>
+                        <span >Name</span>
+                        <input placeholder='Name' type='text'/>
+                    </div>
+                    <div className='logIn-page__input-data_data'>
+                        <span >Email</span>
+                        <input placeholder='Email' type='email'/>
+                    </div>
+                    <div className='logIn-page__input-data_data'>
+                        <span >Password</span>
+                        <input placeholder='Password' type='password'/>
+                    </div>
+                    <div className='logIn-page__input-data_data'>
+                        <span>Config</span>
+                        <input placeholder='Config' type='password'/>
+                    </div>
+                </div>
+                <div className='logIn-page__button'>
+                    <button
+                        onClick={ () => this.handleSignButton('signIn') }
+                        className='button'>
+                        Submit
+                    </button>
+                </div>
+            </div>
         );
     };
 
     getSignInPage = () => {
         return (
-           <>
-               <div className='wrapper-form__fields-container fields-container'>
-                   <div className='fields-container__field field'>
-                       <span className='field__span'>Email</span>
-                       <input className='field__input' placeholder='Email'/>
+           <div className='logIn-page__field'>
+               <div className='logIn-page__input-data'>
+                   <div className='logIn-page__input-data_data'>
+                       <span>Email</span>
+                       <input placeholder='Email' type='email'/>
                    </div>
-                   <div className='fields-container__field field'>
-                       <span className='field__span'>Password</span>
-                       <input className='field__input' placeholder='Password'/>
+                   <div className='logIn-page__input-data_data'>
+                       <span>Password</span>
+                       <input placeholder='Password' type='password'/>
                    </div>
                </div>
-               <div className='wrapper-form__submit-container submit-container'>
-                   <button className='submit-container__button'> Submit </button>
+               <div className='logIn-page__button'>
+                   <button
+                       onClick={ () => this.handleSubmit(!this.state.isPlatformPage) }
+                       className='button'>
+                       Submit
+                   </button>
                </div>
-           </>
+           </div>
+        );
+    };
+
+    getLogInPage = () => {
+        return (
+            <div className='logIn-page'>
+                <div className='logIn-page__controller'>
+                    <button ref = {this.sighInRef}
+                            onClick = {() => this.handleSignButton('signIn')}
+                            className='button button_logIn active'>
+                        Log In
+                    </button>
+                    <button ref = {this.sighUpRef}
+                            onClick = {() => this.handleSignButton('signUp')}
+                            className='button'>
+                        Sign Up
+                    </button>
+                </div>
+                { this.getLogInBody() }
+            </div>
         );
     };
 
     render() {
-        return (
-            <div className='wrapper__wrapper-form wrapper-form'>
-                <div className='wrapper-form__buttons-container buttons-container'>
-                    <button ref = {this.sighInRef}
-                            onClick = {() => this.handleSignButton('signIn')}
-                            className='buttons-container__button active'>
-                        Sign In
-                    </button>
-                    <button ref = {this.sighUpRef}
-                            onClick = {() => this.handleSignButton('signUp')}
-                            className='buttons-container__button'>
-                        Sign Up
-                    </button>
-                </div>
-                { this.getBody() }
-            </div>
-        );
+        return this.state.isPlatformPage ? this.getPlatformPage() : this.getLogInPage();
     }
 }
