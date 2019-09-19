@@ -64,10 +64,31 @@ export default class Login extends Component {
 
     getSignUpPage = () => {
         return (
-            <div>
-                SIGN UP
-                <div>
-                    Hello!
+            <div className='logIn-page__field'>
+                <div className='logIn-page__input-data'>
+                    <div className='logIn-page__input-data_data'>
+                        <span >Name</span>
+                        <input placeholder='Name' type='text'/>
+                    </div>
+                    <div className='logIn-page__input-data_data'>
+                        <span >Email</span>
+                        <input placeholder='Email' type='email'/>
+                    </div>
+                    <div className='logIn-page__input-data_data'>
+                        <span >Password</span>
+                        <input placeholder='Password' type='password'/>
+                    </div>
+                    <div className='logIn-page__input-data_data'>
+                        <span>Config</span>
+                        <input placeholder='Config' type='password'/>
+                    </div>
+                </div>
+                <div className='logIn-page__button'>
+                    <button
+                        onClick={ () => this.handleSubmit(!this.state.isPlatformPage) }
+                        className='button'>
+                        Submit
+                    </button>
                 </div>
             </div>
         );
@@ -75,18 +96,18 @@ export default class Login extends Component {
 
     getSignInPage = () => {
         return (
-           <div>
-               <div className='wrapper-form__fields-container fields-container'>
-                   <div className='fields-container__field field'>
-                       <span className='field__span'>Email</span>
-                       <input className='field__input' placeholder='Email'/>
+           <div className='logIn-page__field'>
+               <div className='logIn-page__input-data'>
+                   <div className='logIn-page__input-data_data'>
+                       <span>Email</span>
+                       <input placeholder='Email' type='email'/>
                    </div>
-                   <div className='fields-container__field field'>
-                       <span className='field__span'>Password</span>
-                       <input className='field__input' placeholder='Password'/>
+                   <div className='logIn-page__input-data_data'>
+                       <span>Password</span>
+                       <input placeholder='Password' type='password'/>
                    </div>
                </div>
-               <div className='wrapper-form__submit-container submit-container'>
+               <div className='logIn-page__button'>
                    <button
                        onClick={ () => this.handleSubmit(!this.state.isPlatformPage) }
                        className='button'>
@@ -99,11 +120,11 @@ export default class Login extends Component {
 
     getLogInPage = () => {
         return (
-            <div className='wrapper__wrapper-form wrapper-form'>
-                <div className='wrapper-form__buttons-container buttons-container'>
+            <div className='logIn-page'>
+                <div className='logIn-page__controller'>
                     <button ref = {this.sighInRef}
                             onClick = {() => this.handleSignButton('signIn')}
-                            className='button active'>
+                            className='button button_logIn active'>
                         Sign In
                     </button>
                     <button ref = {this.sighUpRef}
