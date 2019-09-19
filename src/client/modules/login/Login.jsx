@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Platform from '../platform/Platform.jsx';
 import './style.less';
-
+import  { setLocalStorage } from '../../utils/LocalStorageMethods';
 export default class Login extends Component {
     state = {
         isPlatformPage: false,
@@ -10,6 +10,8 @@ export default class Login extends Component {
 
     sighInRef = React.createRef();
     sighUpRef = React.createRef();
+    email = React.createRef();
+    password = React.createRef();
 
     componentDidUpdate() {
         const { activeState, isPlatformPage } = this.state;
@@ -54,6 +56,12 @@ export default class Login extends Component {
             ...state,
             isPlatformPage,
         }));
+        //const ls = new LocalStorage();
+        let data = {
+            email: this.email.current.text(),
+            password: this.password.current.text(),
+        };
+        setLocalStorage('cred', JSON.stringify(data));
     };
 
     getPlatformPage = () => {
@@ -100,11 +108,11 @@ export default class Login extends Component {
                <div className='logIn-page__input-data'>
                    <div className='logIn-page__input-data_data'>
                        <span>Email</span>
-                       <input placeholder='Email' type='email'/>
+                       <input ref={this.email} placeholder='Email' type='email'/>
                    </div>
                    <div className='logIn-page__input-data_data'>
                        <span>Password</span>
-                       <input placeholder='Password' type='password'/>
+                       <input ref = {this.password} placeholder='Password' type='password'/>
                    </div>
                </div>
                <div className='logIn-page__button'>
