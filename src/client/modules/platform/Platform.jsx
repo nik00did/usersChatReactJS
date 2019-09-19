@@ -76,12 +76,12 @@ export default class Platform extends Component {
             <div className='platform'>
                 <div className='platform__header'>
                     <div className='platform__header-title'>
-                        <p>Name</p>
-                        <p>Email</p>
+                        <p>nik.00.did</p>
+                        <p>02.nik.03.did.00@gmail.com</p>
                     </div>
                     <button
                         onClick={ () => this.handleLogOut(!this.state.isPlatformPage)}
-                        className='button'>
+                        className='button button_header-margin'>
                         Log out
                     </button>
                 </div>
@@ -94,7 +94,7 @@ export default class Platform extends Component {
                         </button>
                         <button ref={ this.chatRef }
                                 onClick={ () => this.handleController('chat')}
-                                className='button'>
+                                className='button button_container'>
                             Chat
                         </button>
                     </aside>

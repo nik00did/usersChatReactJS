@@ -9,7 +9,6 @@ export default class Table extends Component {
                 <Row row='main-row'/>
                 <Row row='row'/>
                 <Row row='row'/>
-                
             </div>
         );
     }
