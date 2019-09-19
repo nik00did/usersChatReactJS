@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.less';
 
-export default class Table extends Component {
+export default class Cell extends Component {
     constructor(props) {
         super(props);
     }
@@ -9,7 +9,7 @@ export default class Table extends Component {
     render() {
         return (
             <div className='cell'>
-                <p>{this.props.children}</p>
+                <p>{this.props.child}</p>
             </div>
         );
     }

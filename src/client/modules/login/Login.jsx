@@ -85,7 +85,7 @@ export default class Login extends Component {
                 </div>
                 <div className='logIn-page__button'>
                     <button
-                        onClick={ () => this.handleSubmit(!this.state.isPlatformPage) }
+                        onClick={ () => this.handleSignButton('signIn') }
                         className='button'>
                         Submit
                     </button>
@@ -125,7 +125,7 @@ export default class Login extends Component {
                     <button ref = {this.sighInRef}
                             onClick = {() => this.handleSignButton('signIn')}
                             className='button button_logIn active'>
-                        Sign In
+                        Log In
                     </button>
                     <button ref = {this.sighUpRef}
                             onClick = {() => this.handleSignButton('signUp')}

@@ -9,16 +9,16 @@ export default class App extends Component {
     };
 
     getBody = () => {
-        const { activePage } = this.state;
-
-        switch (activePage) {
-            case 'login':
+        // const { activePage } = this.state;
+        //
+        // switch (activePage) {
+        //     case 'login':
                 return <Login/>;
-            case 'platform':
-                return <Platform/>;
-            default:
-                return null;
-        }
+        //     case 'platform':
+        //         return <Platform/>;
+        //     default:
+        //         return null;
+        // }
     };
 
     render() {

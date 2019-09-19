@@ -3,12 +3,10 @@ import LeftMessage from './LeftMessage.jsx';
 import RightMessage from './RightMessage.jsx';
 import '../style.less';
 
-export default class Chat extends Component {
+export default class Window extends Component {
     state = {
         listMessage: [],
     };
-
-
 
     getOwner = () => {};
 
