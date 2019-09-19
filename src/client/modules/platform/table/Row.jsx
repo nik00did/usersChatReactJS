@@ -5,7 +5,7 @@ import './style.less';
 export default class Table extends Component {
     render() {
         return (
-            <div className='row'>
+            <div className={this.props.row}>
                 <Cell children={'№'}/>
                 <Cell children={'Name'}/>
                 <Cell children={'Email'}/>

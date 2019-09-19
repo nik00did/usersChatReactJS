@@ -6,9 +6,10 @@ export default class Table extends Component {
     render() {
         return (
             <div className='table'>
-                <Row/>
-                <Row/>
-                <Row/>
+                <Row row='main-row'/>
+                <Row row='row'/>
+                <Row row='row'/>
+                
             </div>
         );
     }
