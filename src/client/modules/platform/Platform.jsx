@@ -69,6 +69,7 @@ export default class Platform extends Component {
             ...state,
             isPlatformPage,
         }));
+        this.localStorage.clear();
     };
 
     getPlatformPage = () => {
