@@ -1,41 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Log in</title>
-    <link rel="stylesheet" href="./style.css">
-    <script  src="./model/user.js" defer></script>
-    <script  src="./model/users.js" defer></script>
-    <script  src="./model/message.js" defer></script>
-    <script  src="./model/chat.js" defer></script>
-    <script  src="./model/model.js" defer></script>
-
-
-    <script src="drawOnePage.js" defer></script>
-    <script src="view.js" defer></script>
-    <script src="sendToServer.js" defer></script>
-    <script src="validator.js" defer></script>
-    <script src="parser.js" defer></script>
-    <script src="webSocket.js" defer></script>
-    <script src="controller.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>USER CHAT</title>
 </head>
-<body id="main">
-<div id="id1" class="form">
-    <div class="button-up">
-        <button id="logIn" class="button-up__item">Log In</button>
-        <button id="signIn" class="button-up__item">Sign In</button>
-    </div>
-    <div id="enterDataId" class="enter-data">
-        <div id="labelEmail" class="enter-data__item">
-            <label for="email">Email</label>
-            <input type="text" id="email"/>
-        </div>
-        <div class="enter-data__item">
-            <label for="password">Password</label>
-            <input type="password" id="password"/>
-        </div>
-        <input type="submit" id="submitLogIn" class="button-up__item button-up__item_submit" value="SUBMIT">
-    </div>
-</div>
+
+<body style="overflow: hidden; width: 100%; height: 100%;">
+    <div id="root"></div>
 </body>
+
 </html>
